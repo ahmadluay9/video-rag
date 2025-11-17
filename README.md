@@ -1,6 +1,6 @@
 # video-rag
 
-# Schema
+## Schema
 ```json
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
@@ -46,4 +46,24 @@
         "transcription"
     ]
 }
+```
+
+## Extract Information from Video using Gemini
+```python
+client = genai.Client(http_options=HttpOptions(api_version="v1"))
+response = client.models.generate_content(
+    model="gemini-2.5-flash",
+    contents=[
+        Part.from_uri(
+            file_uri=file_uri,
+            mime_type="video/mp4",
+        ),
+        prompt,
+    ],
+    config={
+        'response_mime_type': 'application/json',
+        'response_json_schema': media_schema
+    },
+)
+print(response.text)
 ```
