@@ -2,7 +2,7 @@
 
 # Schema
 ```json
-media_schema = {
+{
     "$schema": "http://json-schema.org/draft-07/schema#",
     "title": "Document Schema",
     "description": "Schema for a document object",
